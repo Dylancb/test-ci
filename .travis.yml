@@ -11,8 +11,9 @@ before_script:
   - php artisan migrate
 
 before_install:
-  - mysql -e 'CREATE DATABASE homestead_test;'
-  - mysql -e 'GRANT ALL PRIVILEGES ON *.homestead_test TO "homestead"@"localhost" IDENTIFIED BY "secret";'
+- mysql -u root -e 'CREATE DATABASE homestead;'
+- mysql -u root -e "CREATE USER 'homestead'@'localhost' IDENTIFIED BY 'secret';"
+- mysql -u root -e "GRANT ALL ON homestead.* TO 'homestead'@'localhost';"
 script:
   - phpunit
 
